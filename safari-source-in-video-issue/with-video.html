@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <p>Image to use:</p>
+    <img id="source" src="logo.png">
+    <video id="dest" width="400" controls muted autoplay>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        Your browser does not support HTML video.
+    </video>
+
+    <p>Canvas:</p>
+    <canvas id="myCanvas" width="300" height="300" style="border:1px solid #d3d3d3;">
+        Your browser does not support the HTML5 canvas tag.
+    </canvas>
+
+    <script>
+        window.onload = function () {
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            ctx.drawImage(document.getElementById("source"), 0, 0, 300, 300);
+            ctx.globalCompositeOperation = "source-in";
+            document.getElementById("dest").addEventListener('play', function () {
+                ctx.drawImage(document.getElementById("source"), 0, 0, 300, 300);
+                ctx.drawImage(this, 0, 0, 300, 300);
+            })
+        }
+    </script>
+
+</body>
+
+</html>
